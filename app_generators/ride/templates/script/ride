@@ -35,18 +35,18 @@ ARGV.options do |opts|
     f = "-" + s[0,1]
     o = "--" + s[/[a-z]+/] + "=" + ( s == "environment" ? "environment" : "directory" )
     d = "Rails " + s.gsub("_"," ").split.map { |a| a.capitalize }.join(" ")
-    opts.on(f,o,String,d,"Default: #{opt}") { |OPTIONS[key]| }
+    opts.on(f,o,String,d,"Default: #{opt}") { |options| OPTIONS[key] = options }
   end
 
   opts.separator ""
   
   opts.on("-S shell", "--shell=SHELL",String,
-        "Shell to use for command line","Default: bash") { |OPTIONS[:shell]| }
-  opts.on("-M", "--multiuser","Allow other users to access this screen?","Default: no") { |OPTIONS[:multiuser]| }
+        "Shell to use for command line","Default: bash") { |shell| OPTIONS[:shell] = shell }
+  opts.on("-M", "--multiuser","Allow other users to access this screen?","Default: no") { |multiuser| OPTIONS[:multiuser] = multiuser }
   opts.on("-U USERNAMES", "--usernames=USERNAMES",String,
         "Add comma-separated list of trusted users to be able to access this screen","Default: none") { |users| OPTIONS[:usernames] = users.split(',') }
   opts.on("-C component", "--component_base=component",String,
-          "Use dirs for this component","Default: ''") { |OPTIONS[:component_base]| }
+          "Use dirs for this component","Default: ''") { |component_base| OPTIONS[:component_base] = component_base }
   opts.separator ""
   opts.on("-Fforeground_color", "--fgcolor=COLOR",String,
         "Foreground Color of Status Line Text","Default: red") { |color| OPTIONS[:foreground_color] = screen_color(color) }
@@ -62,9 +62,9 @@ ARGV.options do |opts|
         "Foreground Color of Caption line Active Window Text","Default: red") { |color| OPTIONS[:caption_highlight_color] = screen_color(color) }
   opts.separator "Available colors are black, red, green, yellow, blue, magenta, cyan, white, and default (transparent)"
   opts.on("-Nname", "--name=NAME",String,
-        "Name to use for screen session","Default: Rails") { |OPTIONS[:screen_name]| }
+        "Name to use for screen session","Default: Rails") { |screen_name| OPTIONS[:screen_name] = screen_name }
   opts.on("-Echar", "--escape=CHARACTER",String,
-        "Escape Key to use for screen session","Default: C-a") { |OPTIONS[:screen_escape]| }
+        "Escape Key to use for screen session","Default: C-a") { |screen_escape| OPTIONS[:screen_escape] = screen_escape }
   opts.on("-?", "--help",
           "Show this help message.") { puts opts; exit }
   opts.parse!

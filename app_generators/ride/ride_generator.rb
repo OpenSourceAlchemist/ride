@@ -96,12 +96,12 @@ EOS
       # opts.on("-a", "--author=\"Your Name\"", String,
       #         "Some comment about this option",
       #         "Default: none") { |options[:author]| }
-      opts.on("--language EDITOR", String, "Language to develop in" ,"Default: ruby") { |options[:language]| }
+      opts.on("--language EDITOR", String, "Language to develop in" ,"Default: ruby") { |language| options[:language] = language }
       opts.on("--template TEMPLATE", String, "Project template (support ramaze, rails, newgem)", "Default: ramaze") { |x| options[:project_type] = x }
-      opts.on("--editor EDITOR", String, "Editor to use", "Default: vim") { |options[:editor]| }
-      opts.on("--shell SHELL", String, "Shell to use", "Default: bash") { |options[:shell]| }
-      opts.on("--name NAME", String, "What to name the screen session", "Default: #{@name}") { |options[:screen_name]| }
-      opts.on("--debugger SCRIPT", String, "What to use for window 1, debugger", "Default: script/ride-console") { |options[:console_debugger]| }
+      opts.on("--editor EDITOR", String, "Editor to use", "Default: vim") { |editor| options[:editor] = editor }
+      opts.on("--shell SHELL", String, "Shell to use", "Default: bash") { |shell| options[:shell] = shell }
+      opts.on("--name NAME", String, "What to name the screen session", "Default: #{@name}") { |screen_name| options[:screen_name] = screen_name }
+      opts.on("--debugger SCRIPT", String, "What to use for window 1, debugger", "Default: script/ride-console") { |console_debugger| options[:console_debugger] = console_debugger }
       opts.on("-v", "--version", "Show the #{File.basename($0)} version number and quit.")
     end
 

@@ -27,8 +27,8 @@ class TestRideGenerator < Test::Unit::TestCase
 
   def test_generator_without_options
     run_generator('ride', [APP_ROOT], sources)
-    assert_directory_exists "path/to/included/folder"
-    assert_generated_file   "path/to/included/folder/some_file"
+    #assert_directory_exists "path/to/included/folder"
+    #assert_generated_file   "path/to/included/folder/some_file"
   end
 
   private
